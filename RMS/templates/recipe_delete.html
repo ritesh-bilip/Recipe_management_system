@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Recipe</title>
+  <style>
+    body {
+      background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h2 {
+      color: #fff;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 16px #f5576c88;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    p {
+      color: #4e54c8;
+      font-size: 1.15rem;
+      background: #fff8;
+      padding: 18px 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #f5576c44;
+      text-align: center;
+      margin-bottom: 24px;
+      max-width: 400px;
+    }
+
+    form {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: linear-gradient(90deg, #f5576c 0%, #f093fb 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1.08rem;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px #f5576c44;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.4s;
+      animation: pulseGlow 1.5s infinite alternate;
+      font-weight: 700;
+    }
+
+    button:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 8px 32px #f5576c66;
+      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    a {
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.08rem;
+      box-shadow: 0 2px 8px #38f9d744;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.4s;
+      animation: pulseGlow 1.5s infinite alternate;
+      text-align: center;
+    }
+
+    a:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 16px #43e97b66;
+      background: linear-gradient(90deg, #f5576c 0%, #f093fb 100%);
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 4px 18px #f5576c44;
+      }
+
+      100% {
+        box-shadow: 0 8px 32px #43e97b66;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1rem;
+        padding: 10px 8px;
+        max-width: 98vw;
+      }
+
+      form {
+        gap: 10px;
+      }
+
+      button,
+      a {
+        font-size: 1rem;
+        padding: 10px 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Confirm Delete</h2>
+  <p>Are you sure you want to delete "{{ recipe.name }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'recipe_list' %}">Cancel</a>
+  </form>
+</body>
+
+</html>
